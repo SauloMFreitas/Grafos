@@ -112,6 +112,43 @@ adjMatrix::adjMatrix(int size, bool isDigraph) : graph(size, isDigraph){
         }
     }
 
+    void adjMatrix::DFSUtil(int v, vector<bool>& visitado) {
+        visitado[v] = true;
+        cout << v << " ";
+
+        for (int i = 0; i < V; ++i) {
+            if (adjmatrix[v][i] && !visitado[i]) {
+                DFSUtil(i, visitado);
+            }
+        }
+    }
+
+    void adjMatrix::DFS(int v) {
+        vector<bool> visitado(V, false);
+        DFSUtil(v, visitado);
+    }
+
+    void adjMatrix::BFS(int v) {
+        vector<bool> visitado(V, false);
+        list<int> fila;
+
+        visitado[v] = true;
+        fila.push_back(v);
+
+        while (!fila.empty()) {
+            v = fila.front();
+            cout << v << " ";
+            fila.pop_front();
+
+            for (int i = 0; i < V; ++i) {
+                if (adjmatrix[v][i] && !visitado[i]) {
+                    visitado[i] = true;
+                    fila.push_back(i);
+                }
+            }
+        }
+    }
+
 /*
  * ===========================================================================
  * =                                   DEBUG                                 =

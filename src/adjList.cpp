@@ -150,6 +150,58 @@
     }
 
 
+    void adjList::DFSUtil(int v, vector<bool>& visitado) {
+        // Marca o vértice atual como visitado e imprime
+        visitado[v] = true;
+        cout << v << " ";
+
+        // Recorre a todos os vértices adjacentes a este vértice
+        for (const auto& par : adjlist[v]) {
+            int adj = par.first;
+            if (!visitado[adj]) {
+                DFSUtil(adj, visitado);
+            }
+        }
+    }
+
+    void adjList::DFS(int v) {
+        // Marca todos os vértices como não visitados
+        vector<bool> visitado(V, false);
+
+        // Chama a função recursiva de utilidade DFS para imprimir a DFS a partir de v
+        DFSUtil(v, visitado);
+    }
+
+    void adjList::BFS(int v) {
+        // Marca todos os vértices como não visitados
+        vector<bool> visitado(V, false);
+
+        // Cria uma fila para BFS
+        list<int> fila;
+
+        // Marca o vértice atual como visitado e enfileira
+        visitado[v] = true;
+        fila.push_back(v);
+
+        while (!fila.empty()) {
+            // Desenfileira um vértice da fila e imprime
+            v = fila.front();
+            cout << v << " ";
+            fila.pop_front();
+
+            // Obtém todos os vértices adjacentes do vértice desenfileirado v
+            for (const auto& par : adjlist[v]) {
+                int adj = par.first;
+                if (!visitado[adj]) {
+                    visitado[adj] = true;
+                    fila.push_back(adj);
+                }
+            }
+        }
+    }
+
+
+
 /*
  * ===========================================================================
  * =                                   DEBUG                                 =
@@ -158,10 +210,10 @@
 
     void adjList::print() const {
         for(int i = 0; i < adjlist.size(); i++) {
-            std::cout << i << " -> ";
+            cout << i << " -> ";
             for(const auto& par : adjlist[i]) {
-                std::cout << "(" << par.first << ", " << par.second << ") ";
+                cout << "(" << par.first << ", " << par.second << ") ";
             }
-            std::cout << "\n";
+            cout << "\n";
         }
     }

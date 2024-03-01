@@ -6,6 +6,8 @@ class adjMatrix : public graph
 {
 private:
     vector<vector<int>> adjmatrix;
+
+    void DFSUtil(int v, vector<bool>& visitado);
 public:
     // constructor
     adjMatrix(int size);
@@ -26,6 +28,9 @@ public:
     void removeAllEdgesTo(int to) override;
     void removeAllEdgesFrom(int from) override;
 
+    //search algorithm
+    void BFS(int v) override;
+    void DFS(int v) override;
     // Debug
     void print() const override;
 };

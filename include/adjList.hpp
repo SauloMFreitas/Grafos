@@ -6,6 +6,9 @@ class adjList : public graph
 {
 private:
     vector<list<pair<int, int>>> adjlist;
+
+    void DFSUtil(int v, vector<bool>& visitado);
+
 public:
     // constructor
     adjList(int size);
@@ -25,6 +28,10 @@ public:
     bool removeEdge(int from, int to) override;
     void removeAllEdgesTo(int to) override;
     void removeAllEdgesFrom(int from) override;
+
+    // search algorithm
+    void BFS(int v) override;
+    void DFS(int v) override;
 
     // Debug
     void print() const override;

@@ -33,6 +33,11 @@ public:
     virtual void removeAllEdgesTo(int to) = 0;
     virtual void removeAllEdgesFrom(int from) = 0;
 
+    //search algorithm
+
+    virtual void BFS(int v) = 0;
+    virtual void DFS(int v) = 0;
+
     // Debug
     virtual void print() const = 0;
 
