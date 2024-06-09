@@ -156,6 +156,7 @@ adjMatrix::adjMatrix(int size, bool isDigraph) : graph(size, isDigraph){
  */
 
     void adjMatrix::print() const {
+        cout << "  ";
         for (int i = 0; i < V; i++)
         {
             cout << i << " ";

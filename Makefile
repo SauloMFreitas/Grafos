@@ -11,7 +11,7 @@ else
 	CLEAN_CMD = rm -f src/*.o main.o $(EXEC)
 endif
 
-all:  $(EXEC) clean
+all: clean $(EXEC)
 all: 
 	./$(EXEC)
 
